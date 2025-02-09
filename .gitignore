@@ -1,0 +1,30 @@
+# Environment variables
+.env
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyc
+venv/
+
+# Logs
+apache_arflow/logs/
+
+# DBT
+apache_arflow/dbt/sec_finance_project/target/
+apache_arflow/dbt/sec_finance_project/dbt_packages/
+apache_arflow/dbt/sec_finance_project/logs/
+
+# Airflow
+apache_arflow/logs/
+apache_arflow/plugins/
+
+# IDE
+.idea/
+.vscode/
+
+# AWS
+apache_arflow/dbt/sec_finance_project/data/
+apache_arflow/dbt/sec_finance_project/logs/
+apache_arflow/dbt/sec_finance_project/target/
