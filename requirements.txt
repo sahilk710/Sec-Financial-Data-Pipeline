@@ -6,4 +6,8 @@ pandas
 apache-airflow
 apache-airflow-providers-amazon
 dbt-core
-dbt-snowflake 
+dbt-snowflake
+snowflake-connector-python
+streamlit
+python-dotenv
+fastapi
