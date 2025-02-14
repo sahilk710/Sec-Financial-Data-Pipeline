@@ -1,0 +1,16 @@
+beautifulsoup4==4.9.3
+boto3==1.26.137
+requests==2.28.2
+tqdm==4.65.0
+pandas
+apache-airflow
+apache-airflow-providers-amazon
+dbt-core
+dbt-snowflake
+snowflake-connector-python
+streamlit
+python-dotenv
+fastapi
+google-cloud-secret-manager
+apache-airflow==2.7.1
+apache-airflow-providers-snowflake

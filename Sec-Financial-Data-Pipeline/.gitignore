@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Environment variables
 .env
 
@@ -20,55 +19,12 @@ apache_arflow/dbt/sec_finance_project/logs/
 # Airflow
 apache_arflow/logs/
 apache_arflow/plugins/
-=======
-# Python
-__pycache__/
-*.py[cod]
-*.class
-*.so
-.Python
-env/
-build/
-develop-eggs/
-dist/
-downloads/
-eggs/
-.eggs/
-lib/
-lib64/
-parts/
-sdist/
-var/
-*.egg-info/
-.installed.cfg
-*.egg
-
-# DBT
-target/
-dbt_packages/
-logs/
-
-# Airflow
-logs/
-airflow.db
-airflow.cfg
-webserver_config.py
-airflow-webserver.pid
-
-# Environment variables
-.env
->>>>>>> cef8036b408b50e97749c7e82a00998013c7f08e
 
 # IDE
 .idea/
 .vscode/
-<<<<<<< HEAD
 
 # AWS
 apache_arflow/dbt/sec_finance_project/data/
 apache_arflow/dbt/sec_finance_project/logs/
 apache_arflow/dbt/sec_finance_project/target/
-=======
-*.swp
-*.swo
->>>>>>> cef8036b408b50e97749c7e82a00998013c7f08e

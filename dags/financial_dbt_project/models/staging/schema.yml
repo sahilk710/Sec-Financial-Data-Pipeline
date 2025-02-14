@@ -1,0 +1,42 @@
+version: 2
+
+models:
+  - name: stg_num
+    description: "Staging table for numerical data from SEC filings"
+    columns:
+      - name: adsh
+        description: "Unique identifier for SEC filing"
+        tests:
+          - not_null
+      - name: tag
+        description: "Type of financial metric"
+        tests:
+          - not_null
+      - name: value
+        description: "Financial value"
+        tests:
+          - not_null
+
+  - name: stg_pre
+    description: "Staging table for presentation data from SEC filings"
+    columns:
+      - name: adsh
+        description: "Unique identifier for SEC filing"
+        tests:
+          - not_null
+      - name: tag
+        description: "Type of financial metric"
+        tests:
+          - not_null
+
+  - name: fact_balance_sheet
+    description: "Balance sheet data from SEC filings"
+    columns:
+      - name: adsh
+        description: "Unique identifier for SEC filing"
+        tests:
+          - not_null      # Removed unique test
+      - name: value
+        description: "Financial value"
+        tests:
+          - not_null
