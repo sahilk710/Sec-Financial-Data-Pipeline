@@ -77,7 +77,7 @@ else:  # Fact Tables
     else:  # Financial Tables
         table_options = {
             "Balance Sheet": "FACT_BALANCE_SHEET",
-            "Cash Flow": "FACT_CASH_FLOW",
+            "Cash Flow": "FACT_CASHFLOW",
             "Income Statement": "FACT_INCOME_STATEMENT"
         }
     table_options_to_show = table_options
@@ -229,7 +229,7 @@ with st.expander("📚 Need Help? Click here for documentation"):
     
     #### Financial Tables:
     - `FACT_TABLE_STAGING.FACT_BALANCE_SHEET` - Balance sheet data
-    - `FACT_TABLE_STAGING.FACT_CASH_FLOW` - Cash flow data
+    - `FACT_TABLE_STAGING.FACT_CASHFLOW` - Cash flow data
     - `FACT_TABLE_STAGING.FACT_INCOME_STATEMENT` - Income statement data
     
     ### Tips:
