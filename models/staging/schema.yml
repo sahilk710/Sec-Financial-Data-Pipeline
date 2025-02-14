@@ -1,0 +1,43 @@
+version: 2
+
+models:
+  - name: fact_balance_sheet
+    description: "Balance sheet data from SEC filings"
+    columns:
+      - name: adsh
+        description: "Unique identifier for SEC filing"
+        tests:
+          - not_null
+          - unique
+      - name: value
+        description: "Financial value from the balance sheet"
+        tests:
+          - not_null
+      - name: tag
+        description: "Type of financial metric"
+        tests:
+          - not_null
+
+  - name: fact_income_statement
+    description: "Income statement data from SEC filings"
+    columns:
+      - name: adsh
+        description: "Unique identifier for SEC filing"
+        tests:
+          - not_null
+      - name: value
+        description: "Financial value from income statement"
+        tests:
+          - not_null
+
+  - name: fact_cashflow
+    description: "Cash flow statement data from SEC filings"
+    columns:
+      - name: adsh
+        description: "Unique identifier for SEC filing"
+        tests:
+          - not_null
+      - name: value
+        description: "Financial value from cash flow statement"
+        tests:
+          - not_null
