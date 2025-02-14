@@ -4,31 +4,30 @@ import requests
 import json
 from datetime import datetime
 
-# API base URL
-API_BASE_URL = "http://localhost:8000"
+# Make sure this is at the top of your file and not overwritten anywhere else
+API_URL = "https://finance-data-pipeline.uk.r.appspot.com"
 
 # Function to execute query
-def execute_query(query, schema):
+def execute_query(query, schema="RAW_STAGING"):
     try:
-        headers = {'Content-Type': 'application/json'}
-        payload = {
-            "query": query.strip(),
-            "schema": schema
-        }
+        # Print the URL being called (for debugging)
+        full_url = f"{API_URL}/api/execute-query"
+        st.write(f"Calling API at: {full_url}")
         
         response = requests.post(
-            f"{API_BASE_URL}/api/execute-query",
-            json=payload,
-            headers=headers
+            full_url,
+            json={
+                "query": query,
+                "schema": schema
+            }
         )
-        
-        if response.status_code != 200:
-            st.error(f"Error {response.status_code}: {response.text}")
-            return None
-            
-        return pd.DataFrame(response.json()["data"])
-    except Exception as e:
+        response.raise_for_status()
+        # Convert the response data to a pandas DataFrame
+        data = response.json().get('data', [])
+        return pd.DataFrame(data)
+    except requests.exceptions.RequestException as e:
         st.error(f"Error executing query: {str(e)}")
+        st.error(f"API URL being used: {API_URL}")
         return None
 
 # Page config
@@ -127,7 +126,7 @@ SELECT
     f.VALUE,
     f.STMT,
     f.PLABEL
-FROM {current_table} f
+FROM FACT_BALANCE_SHEET f
 JOIN SUB s ON f.ADSH = s.ADSH
 LIMIT 100
             """,
@@ -138,7 +137,7 @@ SELECT
     f.VALUE,
     f.STMT,
     f.PLABEL
-FROM {current_table} f
+FROM FACT_BALANCE_SHEET f
 JOIN SUB s ON f.ADSH = s.ADSH
 WHERE LOWER(s.NAME) LIKE LOWER('%APPLE%')
 LIMIT 100
@@ -180,24 +179,25 @@ if execute_button:
         with st.spinner('Executing query...'):
             df = execute_query(query, current_schema)
             
-            if df is not None:
+            if df is not None and not df.empty:
                 # Display results
                 st.subheader("Query Results")
-                st.markdown(f"*Found {len(df)} rows*")
+                st.write(f"Found {len(df)} rows")
                 
                 # Display the dataframe
                 st.dataframe(df, use_container_width=True)
                 
                 # Download button
-                csv = df.to_csv(index=False)
-                timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-                st.download_button(
-                    label="📥 Download Results as CSV",
-                    data=csv,
-                    file_name=f"query_results_{timestamp}.csv",
-                    mime="text/csv",
-                    key='download-csv'
-                )
+                if not df.empty:
+                    csv = df.to_csv(index=False)
+                    timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
+                    st.download_button(
+                        label="📥 Download Results as CSV",
+                        data=csv,
+                        file_name=f"query_results_{timestamp}.csv",
+                        mime="text/csv",
+                        key='download-csv'
+                    )
                 
                 # Basic statistics for numerical columns
                 num_cols = df.select_dtypes(include=['float64', 'int64']).columns
