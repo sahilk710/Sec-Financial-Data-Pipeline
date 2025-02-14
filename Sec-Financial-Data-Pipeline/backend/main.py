@@ -5,6 +5,7 @@ import pandas as pd
 from dotenv import load_dotenv
 import os
 from pydantic import BaseModel
+from google.cloud import secretmanager
 import logging
 
 # Set up logging
@@ -15,6 +16,18 @@ logger = logging.getLogger(__name__)
 load_dotenv()
 
 app = FastAPI()
+
+def get_secret(secret_id):
+    """Get secret from GCP Secret Manager"""
+    try:
+        client = secretmanager.SecretManagerServiceClient()
+        name = f"projects/{os.getenv('GCP_PROJECT_ID')}/secrets/{secret_id}/versions/latest"
+        response = client.access_secret_version(request={"name": name})
+        return response.payload.data.decode("UTF-8")
+    except Exception as e:
+        logger.error(f"Error fetching secret {secret_id}: {e}")
+        return None
+
 
 # Snowflake connection parameters for Airflow
 AIRFLOW_SNOWFLAKE_CONFIG = {
@@ -67,4 +80,13 @@ async def execute_query(request: QueryRequest):
     finally:
         if conn:
             conn.close()
+
+@app.get("/")
+async def root():
+    return {
+        "message": "Welcome to SEC Financial Data Pipeline API",
+        "docs": "/docs",
+        "health": "/health",
+        "api": "/api/execute-query"
+    }
 

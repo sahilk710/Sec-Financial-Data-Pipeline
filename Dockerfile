@@ -1,9 +1,18 @@
-FROM apache/airflow:2.8.1
+# Use a Python base image
+FROM python:3.9-slim
 
-USER root
-RUN apt-get update &&     apt-get install -y git python3-pip
+# Set working directory
+WORKDIR /app
 
-USER airflow
-RUN pip3 install dbt-snowflake==1.5.0
+# Copy requirements and install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
 
-ENV PATH="/home/airflow/.local/bin:/Users/sahilkasliwal/Library/Python/3.11/bin:/Users/sahilkasliwal/google-cloud-sdk/bin:/Users/sahilkasliwal/google-cloud-sdk/bin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/Library/Apple/usr/bin:/usr/local/share/dotnet:~/.dotnet/tools:/Library/Frameworks/Mono.framework/Versions/Current/Commands:/Users/sahilkasliwal/Library/Python/3.11/bin:/Users/sahilkasliwal/google-cloud-sdk/bin:/opt/anaconda3/bin:/opt/anaconda3/condabin:/Library/Frameworks/Python.framework/Versions/3.11/bin:/usr/local/mysql-8.0.28-macos11-x86_64/bin:/usr/local/mysql-8.0.28-macos11-x86_64/bin"
+# Copy the rest of the application
+COPY . .
+
+# Expose port 8000
+EXPOSE 8000
+
+# Command to run the FastAPI application
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]

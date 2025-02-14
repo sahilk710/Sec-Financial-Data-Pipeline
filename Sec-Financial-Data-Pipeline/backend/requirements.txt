@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+snowflake-connector-python
+pandas
+google-cloud-secret-manager
+python-dotenv
+pydantic

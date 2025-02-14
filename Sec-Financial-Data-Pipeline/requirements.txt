@@ -11,6 +11,6 @@ snowflake-connector-python
 streamlit
 python-dotenv
 fastapi
-
+google-cloud-secret-manager
 apache-airflow==2.7.1
 apache-airflow-providers-snowflake
