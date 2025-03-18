@@ -7,7 +7,8 @@ Contribution:
 Dhrumil: 33 %
 Sahil: 33 %
 Husain: 33 %
-GitHub Repository
+
+Codelab : https://codelabs-preview.appspot.com/?file_id=1CPjFm63rJsZsrSeXeq6pHaGFEsUKeNBOc3eRcgieRF0/edit?tab=t.0#0
 Repository Link: https://github.com/sahilk710/Sec-Financial-Data-Pipeline
 Frontend : https://sec-financial-data-pipeline-nb6pwqewrtxm6irwf8qrxk.streamlit.app/  
 Backend : https://finance-data-pipeline.uk.r.appspot.com/docs#/default/debug_secrets_debug_secrets_get
