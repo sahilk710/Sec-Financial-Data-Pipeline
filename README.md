@@ -3,10 +3,7 @@ Project Overview
 This project involves designing a financial statement database for Findata Inc., a fintech company supporting analysts conducting fundamental analysis of US public companies. The database will be implemented using Snowflake and sourced from SEC Financial Statement Data Sets.
 Team Contribution Declaration
 WE ATTEST THAT WE HAVEN’T USED ANY OTHER STUDENTS’ WORK IN OUR ASSIGNMENT AND ABIDE BY THE POLICIES LISTED IN THE STUDENT HANDBOOK.
-Contribution:
-Dhrumil:  %
-Sahil: 70 %
-Husain:  %
+
 
 Codelab : https://codelabs-preview.appspot.com/?file_id=1CPjFm63rJsZsrSeXeq6pHaGFEsUKeNBOc3eRcgieRF0/edit?tab=t.0#0
 Repository Link: https://github.com/sahilk710/Sec-Financial-Data-Pipeline
